@@ -12,14 +12,20 @@ permitindo ao usuário registrar tarefas, atribuir prazos, definir prioridades, 
 tags e acompanhar o andamento de cada uma — desde a criação até a sua conclusão.
 Exemplos bastante conhecidos são Microsoft To Do, Trello, Evernote e o Google Keep.
 Exemplo do que o programa deve permitir:
+
 ● Criar uma tarefa como “Estudar para a prova”, com data e prioridade;
+
 ● Marcar como concluída quando finalizada;
+
 ● Ver tarefas por listas, por tags ou por período (semanais, hoje, etc.);
+
 ● Ver somente as tarefas não concluídas ou somente as concluídas.
+
 ⚙️ Especificações Funcionais e Critério de Correção
 O seu programa deverá conter as especificações listadas abaixo. Ao lado esquerdo de cada
 especificação, está entre parênteses, quando aplicável, o número de pontos associados ao
 correto funcionamento deste item para a nota do trabalho.
+
 ● O sistema funcionará no terminal. Isso significa que você irá mostrar informações
 para o usuário e esperará que ele interaja com o sistema escolhendo uma opção em
 um menu. A interação pode ser em relação às informações apresentadas (veja mais
@@ -27,17 +33,18 @@ abaixo) ou fazer alguma outra ação como obter outras informações. Assim, voc
 deve pensar em menus de opções a serem apresentados para o usuário e esses
 menus podem ser diferentes dependendo de que funcionalidade/parte do programa
 está sendo usada.
+
 ● Classes: O projeto terá duas classes principais: Tarefa e ListaDeTarefas. Segue o
 detalhamento de cada uma delas. Os campos marcados como “opcional” devem ser
 implementados, porém, o usuário pode ou não os adicionar ao registrar uma nova
 tarefa/lista.
+
 a. Tarefa
 i. ID: Um número inteiro identificador para a tarefa (obrigatório) que é
 definido internamente pelo sistema, nunca pelo usuário;
 ii. Título: String descrevendo a tarefa (obrigatório);
 iii. Nota: String com uma descrição mais detalhada ou anotações sobre
 a tarefa (opcional);
-
 iv. Data: Data para a conclusão da tarefa (opcional, impressa/lida no
 formato dia, mês e ano, por exemplo, 04/06/2025 corresponde a 04
 de Junho de 2025 — este formato é chamado de DD/MM/AAAA);
@@ -68,19 +75,24 @@ iii. Tarefas: Lista contendo as tarefas que pertencem a esta lista
 ● (0,25 ponto) Adição de novas tarefas: O gerenciador deve permitir que o usuário
 crie novas tarefas, inserindo todos os campos (ou pulando os opcionais), exceto o ID
 que é determinado pelo sistema (e deve ser único).
+
 ● (0,25 ponto) Adição de novas listas de tarefas: O gerenciador deve permitir que o
 usuário crie novas listas de tarefas, inicialmente vazia. Não deve ser possível criar
 duas listas com exatamente o mesmo nome e isso deve ser informado ao usuário
 caso ele tente fazer.
+
 ● (0,25 ponto) Edição das tarefas: O usuário pode editar qualquer campo (exceto
 ID) da tarefa selecionada. Ao editar em qual lista de tarefas esta tarefa está, o seu
 sistema precisa garantir que tal lista exista. Uma opção é imprimir os nomes de listas
 existentes juntamente com o ID e solicitar para ele escolher o ID, mas existem
 outras formas possíveis também.
+
 ● (0,25 ponto) Edição das listas de tarefas: Deve ser possível editar o título da listas
 de tarefas desde que isso não gere duas listas com o mesmo nome.
+
 ● (0,5 ponto) Remoção das tarefas: O gerenciador deve permitir ao listar tarefas
 (veja mais abaixo) que o usuário possa remover (apagar) uma tarefa do sistema.
+
 ● (0,5 ponto) Remoção das listas de tarefas: O gerenciador deve permitir que o
 usuário apague uma lista de tarefas, o que implica também na remoção de todas as
 tarefas daquela lista. Você deve informar ao usuário que todas as tarefas da lista
@@ -94,15 +106,19 @@ usuário está visualizando a tarefa. Se a tarefa apresenta alguma repetição, 
 nova tarefa deverá ser gerada com a data atualizada (ex: “estudar inglês” deverá ser
 feita uma vez por semana, após concluir, deverá ser recriada com sua data ajustada
 para a semana seguinte, somando 7 dias a partir da data de término).
+
 ● (0,5 ponto) Busca por tarefas: Deve ser possível o usuário buscar por tarefas.
 Digita-se um termo (string) e todas as tarefas que contém esse texto no título, nota
 ou tags deverão ser mostradas. O usuário deverá ser capaz editar, remover ou
 marcar como concluídas estas tarefas.
+
 ● (0,5 ponto) Ver tarefas concluídas: Deve ser possível ver todas as tarefas
 concluídas e o usuário pode escolher desmarcar alguma delas, remover uma, ou
 remover todas as tarefas concluídas.
+
 ● (2 pontos no total, veja abaixo) Visualização das tarefas: Há vários tipos de
 visualizações que devem ser possíveis ao usuário:
+
 a. O usuário pode ver as tarefas de uma determinada “tag”, de uma
 determinada lista ou de todas as listas ao mesmo tempo, das seguintes
 formas:
@@ -110,10 +126,12 @@ i. todas as tarefas
 ii. apenas as tarefas com data até hoje (incluindo atrasadas),
 iii. apenas as tarefas com data até em 7 dias (incluindo atrasadas),
 iv. apenas tarefas não concluídas.
+
 b. Quando visualizar as tarefas, elas estarão por padrão ordenadas por data
 (aquelas que não apresentam ficam no final), e se houver mais de uma tarefa
 num mesmo dia, o desempate será pela prioridade e por lista (se também
 tiverem a mesma prioridade).
+
 c. Deve ser possível também visualizar as tarefas ordenadas por prioridade,
 desempatadas por data e por lista.
 d. Cada ponto do item (a) vale 0,5 ponto, sendo 0,25 ponto para a ordenação
@@ -124,6 +142,8 @@ carregando as tarefas existentes no início e salvando as alterações após cad
 modificação. Para facilitar a avaliação, o sistema deve ser entregue com diversas
 tarefas e listas predefinidas no sistema, isto é, salva em um ou mais arquivos de
 acordo com a forma que o sistema armazena os dados.
+
+
 📋 Requisitos
 O programa principal, lista_de_tarefas.py, é o ponto de execução do sistema (isto é, nós
 executaremos o seu software digitando python lista_de_tarefas.py). O Gerenciador de
@@ -139,6 +159,7 @@ docstrings, até mesmo para que seja fácil programar e trabalhar em grupo.
 Pode-se, opcionalmente, utilizar o projeto também como uma forma de treinar os conceitos
 de teste com pytest, de type hinting com mypy, e de formatação de código com o flake8.
 Não há nota para estes aspectos, mas é uma forma de treinar os conceitos vistos em aula.
+
 🗂 Entrega
 Deverá ser entregue um único arquivo chamado RA1_RA2_RA3_RA4.zip onde RAi é o RA
 do i-ésimo aluno. Dentro dele deve haver:
