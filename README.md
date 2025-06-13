@@ -42,25 +42,33 @@ tarefa/lista.
 a. Tarefa
 i. ID: Um número inteiro identificador para a tarefa (obrigatório) que é
 definido internamente pelo sistema, nunca pelo usuário;
+
 ii. Título: String descrevendo a tarefa (obrigatório);
+
 iii. Nota: String com uma descrição mais detalhada ou anotações sobre
 a tarefa (opcional);
+
 iv. Data: Data para a conclusão da tarefa (opcional, impressa/lida no
 formato dia, mês e ano, por exemplo, 04/06/2025 corresponde a 04
 de Junho de 2025 — este formato é chamado de DD/MM/AAAA);
+
 v. Tags: Lista de strings que podem ser usadas para categorizar ou
 filtrar tarefas (ex: “universidade”, “trabalho”, “pessoal”, opcional no
 sentido que a lista pode ser vazia);
+
 vi. Lista de Tarefas Associada: indica a qual “Lista de Tarefas” esta
 tarefa pertence. Pode ser o ID da “lista de tarefas mãe”, mas ao ser
 impresso para o usuário deve se mostrar o título da lista, nunca o ID
 (que não tem significado algum para o usuário). Toda tarefa tem que
 estar em alguma lista (obrigatório);
+
 vii. Prioridade: Define a urgência da tarefa. Valores possíveis: “Sem
 Prioridade”, “Baixa”, “Média” e “Alta” (obrigatório);
+
 viii. Repetição: Define a frequência com que a tarefa se repete. Valores
 possíveis: “Nenhuma”, “Diária”, “Semanal”, “Mensal”, “Anual”
 (obrigatório); e
+
 ix. Concluída: Um valor Booleano (True/False) indicando se a tarefa foi
 finalizada (obrigatório).
 
@@ -148,8 +156,7 @@ acordo com a forma que o sistema armazena os dados.
 O programa principal, lista_de_tarefas.py, é o ponto de execução do sistema (isto é, nós
 executaremos o seu software digitando python lista_de_tarefas.py). O Gerenciador de
 Tarefas deve, obrigatoriamente, conter no mínimo as classes Tarefa e ListaDeTarefas,
-caso contrário o projeto terá nota zero. É permitido, e recomendado, o uso de múltiplos
-arquivos, outras classes, funções e bibliotecas nativas (como os, datetime, etc.). Bibliotecas
+caso contrário o projeto terá nota zero. É permitido, e recomendado, o uso de múltiplos arquivos, outras classes, funções e bibliotecas nativas (como os, datetime, etc.). Bibliotecas
 que exigem instalação via pip não são permitidas.
 TURMA W: GRUPO DE ATÉ 2 PESSOAS;
 
@@ -163,33 +170,45 @@ Não há nota para estes aspectos, mas é uma forma de treinar os conceitos vist
 🗂 Entrega
 Deverá ser entregue um único arquivo chamado RA1_RA2_RA3_RA4.zip onde RAi é o RA
 do i-ésimo aluno. Dentro dele deve haver:
+
 ● README.pdf: Este arquivo deverá conter a explicação de todas as funcionalidades
 que o seu Gerenciador de Tarefas possui, além de mostrar como utilizar o seu
 programa com alguns exemplos simples e screenshots. Também deve conter, no
 início, o nome e RA de todos os alunos do grupo.
+
 ● lista_de_tarefas.py: O arquivo principal do seu software.
+
 ● Outros arquivos .py que você criar para organizar o código do seu software
 (recomendado)
+
 ● Arquivo(s) referente(s) com várias tarefas e listas de tarefas salvas para que o seu
 software ao rodar já tenha esses conteúdos salvos.
 💡 Dicas
+
 ● Vocês podem implementar outras funcionalidades, apesar disso não valer nota.
+
 ● Os IDs são gerados pelo seu software, não pelo usuário e podem ajudar a tornar
 mais fácil tarefas como edição e remoção.
+
 ● Vocês podem criar outros campos para tarefas, tanto para adicionar novas
 funcionalidades (ex: horário, local, link_do_meet, etc.), quanto para facilitar a
 programação de vocês.
+
 ● Para a manipulação das datas, vocês podem utilizar a biblioteca datetime,
 principalmente as classes date e timedelta. Aqui está a documentação para
 consultarem: datetime.
+
 ● Mesmo que você possa criar o seu próprio formato para ler e escrever no arquivo,
 recomendamos que você utilize json, um formato para arquivos de texto que permite
+
 o uso de dicionários e listas. É parte do trabalho o que é o json e como usar no
 Python, mas é algo bem tranquilo (e é o que esperamos que a maioria vá fazer).
 Porém, deixamos algumas dicas para não ter problemas:
+
 ○ Nem todo objeto pode ser transformado para json. Um exemplo é o set.
 Porém, dicionários, listas, strings, inteiros e floats podem ser transformados
 para json.
+
 ○ Um objeto da classe date do datetime não pode ser transformado para json
 diretamente. Sugerimos converter ele para uma string no padrão iso (ex:
 2025-06-04 representa 04 de Junho de 2025) usando o método isoformat()
