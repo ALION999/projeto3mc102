@@ -17,8 +17,8 @@ def clear():
 
 
 'variaveis livres'
-listas = list()  # guarda as listas de tarefas criadas
-identificadores_ldt = list() # ids das listas de tarefas
+
+identificadores_ldt = open('listas.txt', 'at+') # ids das listas de tarefas
 
 identificadores_tarefas = dict()  # id : título
 
@@ -39,7 +39,7 @@ class Tarefas():
     def cria_tarefa(self, nome):
         '''Cria uma nova tarefa'''
 
-        self.Titulo = input('Titulo da tarefa:\n')
+        self.Titulo = nome
         self.nota = input('descrição: (opcional, enter para continuar)\n')
         if self.nota == '':
             del self.nota
@@ -55,48 +55,65 @@ class ListaDeTarefas():
     def cria_lista(self, nome):
         '''Cria uma nova lista de tarefas'''
         self.titulo = nome
-        listas.append(nome)
-        identificação = nome.split(sep=' ')
+        identificação = nome.split()
         numero_id = ''
         for palavra in identificação:
             numero_id += str(ord(palavra[0]))
         self.id = numero_id
+
+        identificadores_ldt.seek(0)
+        identificadores_ldt.read()
+        identificadores_ldt.write(self.id)
 
 
 # Funções de implementações
 def ver_listas_de_tarefas():
     '''Acessa as listas de tarefas'''
     clear()
-    if listas != []:
-        for i, lista in enumerate(listas, 1):
+    identificadores_ldt.seek(0)
+    listas_criadas = identificadores_ldt.read().split()
+    if listas_criadas != []:
+        for i, lista in enumerate(listas_criadas, 1):
             print(f'{i} - {lista}')
+        print(f'{len(listas_criadas) + 1} - Criar nova lista')
+        print(f'{len(listas_criadas) + 2} - Voltar\n')
         entrada = input()
-        # # #
 
-    else:
-        print('nenhuma lista encontrada, gostaria de criar uma nova?')
-        entrada = input('[s] [n]\n')
-
-        while True:
-            if entrada == 's' or entrada == 'sim':
+        if entrada == str(len(listas_criadas) + 1):
+            while True:
+                
                 clear()
-
                 lista_tarefas = ListaDeTarefas()
                 nome = input('insira o titulo da lista:\n')
                 clear()
                 lista_tarefas.cria_lista(nome)
                 break
+            ver_listas_de_tarefas()
+
+        elif entrada == str(len(listas_criadas) + 2):
+            inicio()
 
 
-            elif entrada == 'n' or entrada == 'não' or entrada == 'nao':
-                break
+    else:
+        print('nenhuma lista encontrada, gostaria de criar uma nova?')
+        entrada = input('1- sim\n2- não')
 
-            else:
-                entrada = input('resposta invalida, por favor digite apenas "s" ou "n" \n')
-        inicio()
+        if entrada == '1':
+            clear()
+            lista_tarefas = ListaDeTarefas()
+            nome = input('insira o titulo da lista:\n')
+            clear()
+            lista_tarefas.cria_lista(nome)
+            ver_listas_de_tarefas()
+
+        elif entrada == '2':
+            inicio()
 
 
+
+# Função principal
 def inicio():
+    clear()
     entrada = input('1 - ver listas de tarefas\n'
                     '2 - ver tarefas pendentes\n'
                     '3 - ver tarefas concluidas\n'
