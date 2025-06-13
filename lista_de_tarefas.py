@@ -96,7 +96,7 @@ def ver_listas_de_tarefas():
 
     else:
         print('nenhuma lista encontrada, gostaria de criar uma nova?')
-        entrada = input('1- sim\n2- não')
+        entrada = input('1- sim\n2- não\n')
 
         if entrada == '1':
             clear()
