@@ -10,10 +10,10 @@ import datetime
 'Funções ajudantes'
 def clear():
     '''limpa o terminal'''
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
+    #if os.name == 'nt':
+    #    os.system('cls')
+    #else:
+    #    os.system('clear')
 
 
 'variaveis livres'
@@ -61,9 +61,8 @@ class ListaDeTarefas():
             numero_id += str(ord(palavra[0]))
         self.id = numero_id
 
-        identificadores_ldt.seek(0)
-        identificadores_ldt.read()
-        identificadores_ldt.write(self.id)
+        identificadores_ldt.seek(len(identificadores_ldt.read().split(sep= " ")) + 1)
+        identificadores_ldt.write(self.id + " ")
 
 
 # Funções de implementações
@@ -72,9 +71,12 @@ def ver_listas_de_tarefas():
     clear()
     identificadores_ldt.seek(0)
     listas_criadas = identificadores_ldt.read().split()
+
     if listas_criadas != []:
+
         for i, lista in enumerate(listas_criadas, 1):
             print(f'{i} - {lista}')
+
         print(f'{len(listas_criadas) + 1} - Criar nova lista')
         print(f'{len(listas_criadas) + 2} - Voltar\n')
         entrada = input()
@@ -96,18 +98,19 @@ def ver_listas_de_tarefas():
 
     else:
         print('nenhuma lista encontrada, gostaria de criar uma nova?')
-        entrada = input('1- sim\n2- não\n')
 
-        if entrada == '1':
-            clear()
-            lista_tarefas = ListaDeTarefas()
-            nome = input('insira o titulo da lista:\n')
-            clear()
-            lista_tarefas.cria_lista(nome)
-            ver_listas_de_tarefas()
+        while True:
+            entrada = input('1- sim\n2- não\n')
+            if entrada == '1':
+                clear()
+                lista_tarefas = ListaDeTarefas()
+                nome = input('insira o titulo da lista:\n')
+                clear()
+                lista_tarefas.cria_lista(nome)
+                ver_listas_de_tarefas()
 
-        elif entrada == '2':
-            inicio()
+            elif entrada == '2':
+                inicio()
 
 
 
@@ -120,19 +123,28 @@ def inicio():
                     '4 - criar nova tarefa\n\n'
                     )
 
-    match entrada:
-        case '1':
-            ver_listas_de_tarefas()
+    while True:
+        match entrada:
+            case '1':
+                ver_listas_de_tarefas()
+                break
 
-        case '2':
-            'a'     # implementar
+            case '2':
+                'a'     # implementar
 
-        case '3':
-            'a'     # implementar
+            case '3':
+                'a'     # implementar
 
-        case '4':
-            tarefa = Tarefas()
-            nome = input('Nome da tarefa:\n')
-            tarefa.cria_tarefa(nome)
+            case '4':
+                
+                tarefa = Tarefas()
+                nome = input('Nome da tarefa:\n')
+                tarefa.cria_tarefa(nome)
+                break
+
+            case _:
+                entrada = input('opção invalida, tente novamente\n')
+
+
 
 inicio()
