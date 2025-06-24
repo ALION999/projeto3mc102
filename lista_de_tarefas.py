@@ -4,21 +4,20 @@
 
 # Bibliotecas que exigem instalação via pip não são permitidas.
 
-import os
 import datetime
+import os
 
-'Funções ajudantes'
+# Funções ajudantes
 def clear():
-    '''limpa o terminal'''
-    #if os.name == 'nt':
-    #    os.system('cls')
-    #else:
-    #    os.system('clear')
+    'limpa o terminal'
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 
+# Variáveis livres
 
-'variaveis livres'
-
-identificadores_ldt = open('listas.txt', 'at+') # ids das listas de tarefas
+ #  identificadores_ldt = open('listas.txt', 'at+') # ids das listas de tarefas
 
 identificadores_tarefas = dict()  # id : título
 
@@ -36,8 +35,8 @@ class Tarefas():
         self.repeticao = None     # não, diaria, semanal, mensal, anual. *
         self.concluida = False    # True, False  *
 
-    def cria_tarefa(self, nome):
-        '''Cria uma nova tarefa'''
+    def cria_tarefa(self, nome: str):
+        'cria uma nova tarefa'
 
         self.Titulo = nome
         self.nota = input('descrição: (opcional, enter para continuar)\n')
@@ -52,25 +51,29 @@ class ListaDeTarefas():
         self.titulo = str()   # titulo da lista *
         self.tarefas = list()   # lista de objetos Tarefas na lista *
 
-    def cria_lista(self, nome):
-        '''Cria uma nova lista de tarefas'''
+    def cria_lista(self, nome: str):
+        'Cria uma nova lista de tarefas'
+
+        while nome.strip() == '':
+            nome = input('insira o título da lista:\n')
+
         self.titulo = nome
         identificação = nome.split()
         numero_id = ''
         for palavra in identificação:
             numero_id += str(ord(palavra[0]))
         self.id = numero_id
-
-        identificadores_ldt.seek(len(identificadores_ldt.read().split(sep= " ")) + 1)
-        identificadores_ldt.write(self.id + " ")
+        with open('listas.txt', 'at+') as file:
+            file.write(f'{self.id}\n')
 
 
 # Funções de implementações
 def ver_listas_de_tarefas():
-    '''Acessa as listas de tarefas'''
+    'Acessa as listas de tarefas'
     clear()
-    identificadores_ldt.seek(0)
-    listas_criadas = identificadores_ldt.read().split()
+    with open('listas.txt', 'r+') as file:
+        file.seek(0)
+        listas_criadas = file.read().split()
 
     if listas_criadas != []:
 
@@ -123,28 +126,33 @@ def inicio():
                     '4 - criar nova tarefa\n\n'
                     )
 
-    while True:
-        match entrada:
-            case '1':
-                ver_listas_de_tarefas()
-                break
 
-            case '2':
-                'a'     # implementar
+    match entrada:
+        case '1':
+            return 'listadetarefas'
 
-            case '3':
-                'a'     # implementar
+        case '2':
+            return 'pendentes'    # implementar
 
-            case '4':
-                
-                tarefa = Tarefas()
-                nome = input('Nome da tarefa:\n')
-                tarefa.cria_tarefa(nome)
-                break
+        case '3':
+            return 'concluidas'     # implementar
 
-            case _:
-                entrada = input('opção invalida, tente novamente\n')
+        case '4':
+            return 'novatarefa'
 
+        case _:
+            entrada = input('opção invalida, tente novamente\n')
+            return 'inicio'
 
+escolha = inicio()
 
-inicio()
+while True:
+    match escolha:
+        case 'inicio':
+            escolha = inicio()
+        case 'listadetarefas':
+            escolha = ver_listas_de_tarefas()
+        #case 'pendentes': ##
+            escolha = tarefas_pendentes()
+        #case 'concluidas':
+            escolha = tarefas_concluidas()

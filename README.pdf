@@ -6,3 +6,16 @@ programa com alguns exemplos simples e screenshots.
 Integrantes:
 1 - Roger Honorato 247617
 2 - 
+
+Como utilizar:
+    Inicio:
+    Ao iniciar o programa, um menu com opções irá aparecer, o usuario deve inserir 
+    o numero correspondente com a opção desejada.
+
+    Listas de tarefas:
+    Ao selecionar a opção 'Ver listas de tarefas' no primeiro menu, o usuario sera
+    redirecionado à um novo menu, contendo os titulos das listas de tarefas ja criadas,
+    ou então, sera requerido que crie uma nova, caso não exista alguma.
+
+    
+    
